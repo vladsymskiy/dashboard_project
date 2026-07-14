@@ -1,0 +1,1029 @@
+/* ==========================================================================
+   Design System & Tokens (Лаконічний корпоративний стиль з високим контрастом)
+   ========================================================================== */
+:root {
+  --bg-app: #EBEBD3;
+  /* Головний колір фону сторінки (Beige) */
+  --bg-sidebar: #EBEBD3;
+  /* Фон лівої бічної панелі (Beige) */
+  --bg-card: #ffffff;
+  --bg-secondary: #F5F5EA;
+  /* Гармонійний м'який крем-фон для вторинних елементів */
+
+  --border-color: rgba(51, 81, 69, 0.22);
+  /* Межі віджетів у тоні Brunswick Green */
+  --border-focus: #335145;
+
+  --text-primary: #1e293b;
+  /* Глибокий графітовий для заголовків та важливих значень */
+  --text-secondary: #334155;
+  /* Нейтральний темний для метрик та підписів */
+  --text-muted: #64748b;
+
+  --accent-primary: #335145;
+  /* Brunswick Green (Основний акцентний) */
+  --accent-blue: #335145;
+  /* Сумісність: Brunswick Green */
+  --accent-emerald: #335145;
+  /* Виконано та перевиконано (>= 100%) */
+  --accent-amber: #C5A059;
+  /* Ризик невиконання (95% - 100%) - гірчично-золотий */
+  --accent-rose: #A7333F;
+  /* Критичне недовиконання (< 95%) - теракотовий */
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --font-main: 'e-Ukraine', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Жорстка фіксація сторінки без появи смуг прокручування (100vh) */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   Фіксована ліва бічна панель (Sidebar: рівно 600px ширини)
+   ========================================================================== */
+.sidebar {
+  width: 600px;
+  min-width: 600px;
+  max-width: 600px;
+  flex-shrink: 0;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Прокручування лише внутрішнього вмісту панелі */
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.04);
+  z-index: 10;
+}
+
+/* Стилізація смуги прокрутки для бічної панелі */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--bg-sidebar);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Шапка сайдбару */
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--bg-card);
+  padding: 20px 1.25rem 1.25rem 1.25rem;
+  border-radius: 0 0 14px 14px;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0 !important;
+  margin-top: 0 !important;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.heroicon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.logo-svg {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-blue);
+  margin-top: 2px;
+}
+
+.brand-text h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* 1. Динамічне відображення звітної дати */
+.report-date-text {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.45rem;
+  background: var(--bg-secondary);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  display: inline-block;
+  border: 1px solid #e2e8f0;
+}
+
+.report-date-text span {
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+.sidebar-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-control {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(51, 81, 69, 0.18);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.input-control:focus,
+.input-control:hover {
+  border-color: rgba(51, 81, 69, 0.45);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(51, 81, 69, 0.08);
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.search-dropdown.hidden {
+  display: none;
+}
+
+.search-item {
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-bottom: 1px solid var(--bg-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.search-item:hover {
+  background: #e0f2fe;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: var(--font-main);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: var(--bg-card);
+  border: 1.5px solid var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Динамічний вибір джерела даних (Data Source Selector)
+   ========================================================================== */
+.tax-selector-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-top: 0.25rem;
+}
+
+.tax-selector-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.select-control-tax {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(51, 81, 69, 0.18);
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='%23335145'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  outline: none;
+  cursor: pointer;
+  font-weight: 700;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.select-control-tax:focus,
+.select-control-tax:hover {
+  border-color: rgba(51, 81, 69, 0.45);
+  box-shadow: 0 0 0 3px rgba(51, 81, 69, 0.08);
+}
+
+/* ==========================================================================
+   2. БЛОК А: Постійний макро-рівень («Обласний бюджет»)
+   ========================================================================== */
+.block-a {
+  background: #335145;
+  /* Brunswick Green */
+  color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.block-a-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0.75rem;
+}
+
+.badge-macro {
+  background: rgba(0, 87, 184, 0.4);
+  color: #93c5fd;
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  align-self: flex-start;
+}
+
+.block-a-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.block-a-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.block-a-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.block-a-label {
+  color: #94a3b8;
+}
+
+.block-a-val {
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.block-a-rate-item {
+  margin-top: 0.35rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.block-a-val-rate {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  /* Світлий контрастний текст поверх Brunswick Green */
+}
+
+/* ==========================================================================
+   2 & 3. БЛОК Б: Динамічний рівень (Громади / Райони)
+   ========================================================================== */
+.block-b {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Перемикач шарів (Toggle Layers) */
+.layer-toggle-section {
+  background: var(--bg-card);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.layer-toggle-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.layer-toggle-buttons {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 0.3rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.layer-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.layer-btn:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(51, 81, 69, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.layer-btn.active {
+  background: var(--accent-primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Секція профілю об'єкта
+   ========================================================================== */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.profile-header {
+  background: var(--bg-card);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  background: #e0f2fe;
+  color: var(--accent-blue);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.profile-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1.3;
+}
+
+.rank-badge-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #335145;
+  /* Brunswick Green */
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rank-badge-main.hidden {
+  display: none;
+}
+
+.rank-label-small {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+}
+
+.rank-number {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #EBEBD3;
+  /* Нейтральний світлий колір Beige */
+}
+
+/* Сітка фінансових показників (2x2) */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.metric-card {
+  background: var(--bg-card);
+  padding: 1.35rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.metric-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(51, 81, 69, 0.35);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.card-blue::before {
+  background: #335145;
+}
+
+/* План на звітний період: Brunswick Green */
+.card-emerald::before {
+  background: var(--accent-emerald);
+}
+
+/* Фактичні надходження: динамічний зелений */
+.card-indigo::before {
+  background: #335145;
+}
+
+/* Річний план: Brunswick Green */
+.card-purple::before {
+  background: #335145;
+}
+
+/* Факт минулого року: Brunswick Green */
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  gap: 0.5rem;
+}
+
+.metric-svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+}
+
+/* Акцентні іконки карток Плану та Факту минулого року у строгому Brunswick Green */
+.card-blue .metric-svg {
+  color: #335145;
+}
+
+.card-emerald .metric-svg {
+  color: var(--accent-emerald);
+}
+
+.card-indigo .metric-svg {
+  color: #335145;
+}
+
+.card-purple .metric-svg {
+  color: #335145;
+}
+
+.metric-value {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+
+.metric-sub {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.6rem;
+}
+
+.text-emerald {
+  color: var(--accent-emerald) !important;
+  font-weight: 700;
+}
+
+.text-success {
+  color: var(--accent-emerald) !important;
+  font-weight: 700;
+}
+
+.text-danger {
+  color: var(--accent-rose) !important;
+  font-weight: 700;
+}
+
+/* Картка міні-графіка */
+.mini-chart-card {
+  background: var(--bg-card);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.mini-chart-header h4 {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* 6. Горизонтальна діаграма Chart.js (адаптована висота) */
+.chart-container-mini {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  min-height: 200px;
+}
+
+/* 7. Контейнер для діаграми структури (Donut Chart) */
+.chart-container-structure {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  min-height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Віджет «Топ-10 лідерів / Антирейтинг»
+   ========================================================================== */
+.ranking-widget {
+  background: var(--bg-card);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.ranking-widget-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ranking-widget-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.select-control-small {
+  width: 100%;
+  padding: 10px 34px 10px 14px;
+  font-size: 0.82rem;
+  border-radius: 10px;
+  border: 1px solid rgba(51, 81, 69, 0.18);
+  background-color: var(--bg-secondary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='%23335145'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 15px 15px;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.select-control-small:focus,
+.select-control-small:hover {
+  border-color: rgba(51, 81, 69, 0.45);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(51, 81, 69, 0.08);
+}
+
+.ranking-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 0.3rem;
+  border-radius: 10px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(51, 81, 69, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.tab-svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tab-btn.active {
+  background: var(--accent-primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.ranking-list-container {
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.ranking-list-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ranking-list-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.ranking-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ranking-list.hidden {
+  display: none;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.ranking-item:hover {
+  background: #ffffff;
+  border-color: rgba(51, 81, 69, 0.25);
+  box-shadow: 0 4px 10px rgba(51, 81, 69, 0.08);
+  transform: translateX(3px);
+}
+
+.ranking-item.selected-ranking-item {
+  background: #e0f2fe;
+  border-color: var(--accent-blue);
+}
+
+.ranking-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+}
+
+.rank-pos-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-left: 8px;
+  margin-right: 4px;
+}
+
+.rank-top-pos {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.rank-anti-pos {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.ranking-hromada-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ranking-item-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Права частина: Карта (весь вільний простір, width: calc(100% - 600px))
+   ========================================================================== */
+.map-section {
+  flex: 1 1 auto;
+  width: calc(100% - 600px);
+  height: 100vh;
+  max-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+/* Плаваюча легенда карти */
+.map-floating-legend {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  max-width: 650px;
+  /* Збільшено для горизонтального компонування */
+}
+
+.legend-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.35rem;
+}
+
+/* Горизонтальна легенда карти */
+.legend-items,
+.legend,
+.info.legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* Відступ між квадратиком і текстом */
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Стандартний кольоровий квадратик легенди */
+.color-box,
+.legend-item i {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Стилізація Leaflet тултипів */
+.leaflet-container {
+  font-family: var(--font-main) !important;
+}
+
+.custom-tooltip-content h4 {
+  margin-bottom: 0.4rem;
+  color: var(--accent-primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.25rem;
+}
+
+.custom-tooltip-content p {
+  margin: 0.25rem 0;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Адаптивність для менших екранів
+   ========================================================================== */
+@media (max-width: 1024px) {
+
+  html,
+  body {
+    overflow-y: auto;
+  }
+
+  .app-container {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .map-section {
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+  }
+}
